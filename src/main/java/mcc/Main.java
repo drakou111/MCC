@@ -15,16 +15,13 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        /*if (args.length < 2) {
+        if (args.length < 2) {
             System.err.println("Usage: java Main <input.txt> <output.as>");
             return;
         }
 
         String inputPath = args[0];
-        String outputPath = args[1];*/
-
-        String inputPath = "input.txt";
-        String outputPath = "output.as";
+        String outputPath = args[1];
 
         String fileContent;
 
