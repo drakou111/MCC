@@ -1,0 +1,159 @@
+function main() {
+
+    clearChars();
+    writeString("Starting...");
+    pushChars();
+
+    let rnd = random();
+    let answer0;
+    let answer1;
+    let answer2;
+    let answer3;
+    let answer4;
+
+    function word(a,b,c,d,e) {
+        answer0 = a;
+        answer1 = b;
+        answer2 = c;
+        answer3 = d;
+        answer4 = e;
+    }
+
+    if (rnd >= 0 && rnd < 16) {
+        word('t', 'o', 'u', 'g', 'h');
+    }
+    elseif (rnd >= 16 && rnd < 32) {
+        word('e', 'a', 'r', 'l', 'y');
+    }
+    elseif (rnd >= 32 && rnd < 48) {
+        word('s', 't', 'o', 'r', 'e');
+    }
+    elseif (rnd >= 48 && rnd < 64) {
+        word('t', 'r', 'i', 'a', 'l');
+    }
+    elseif (rnd >= 64 && rnd < 80) {
+        word('s', 'p', 'o', 'r', 't');
+    }
+    elseif (rnd >= 80 && rnd < 96) {
+        word('a', 'c', 't', 'o', 'r');
+    }
+    elseif (rnd >= 96 && rnd < 112) {
+        word('j', 'o', 'n', 'e', 's');
+    }
+    elseif (rnd >= 112 && rnd < 128) {
+        word('c', 'o', 'a', 's', 't');
+    }
+    elseif (rnd >= 128 && rnd < 144) {
+        word('s', 'i', 'n', 'c', 'e');
+    }
+    elseif (rnd >= 144 && rnd < 160) {
+        word('c', 'l', 'e', 'a', 'r');
+    }
+    elseif (rnd >= 160 && rnd < 176) {
+        word('d', 'o', 'z', 'e', 'n');
+    }
+    elseif (rnd >= 176 && rnd < 192) {
+        word('f', 'r', 'a', 'm', 'e');
+    }
+    elseif (rnd >= 192 && rnd < 208) {
+        word('l', 'e', 'g', 'a', 'l');
+    }
+    elseif (rnd >= 208 && rnd < 224) {
+        word('s', 'p', 'l', 'i', 't');
+    }
+    elseif (rnd >= 224 && rnd < 240) {
+        word('b', 'i', 'r', 't', 'h');
+    }
+    elseif (rnd >= 240 && rnd <= 255) {
+        word('a', 'l', 'o', 'n', 'e');
+    }
+
+    let guess0 = '-';
+    let guess1 = '-';
+    let guess2 = '-';
+    let guess3 = '-';
+    let guess4 = '-';
+
+    let MIN_PICK = 'a';
+    let MAX_PICK = 'z';
+
+    let pick = MIN_PICK;
+
+    let lifeCount = 5;
+    let loseHealth;
+    let releasedButton = 1;
+    showNumber(lifeCount);
+
+    let pressedButton;
+
+    while (1 == 1) {
+
+        if (getButtonRight()) {
+            pick++;
+            if (pick > MAX_PICK) {
+                pick = MIN_PICK;
+            }
+        } elseif (getButtonLeft()) {
+            pick--;
+            if (pick < MIN_PICK) {
+                pick = MAX_PICK;
+            }
+        }
+
+        clearChars();
+        writeString(guess0, guess1, guess2, guess3, guess4, ' ', pick);
+        pushChars();
+
+        if (getButtonA()) {
+
+            if (releasedButton == 1) {
+                loseHealth = 1;
+                if (answer0 == pick) {
+                    guess0 = answer0;
+                    loseHealth = 0;
+                }
+                if (answer1 == pick) {
+                    guess1 = answer1;
+                    loseHealth = 0;
+                }
+                if (answer2 == pick) {
+                    guess2 = answer2;
+                    loseHealth = 0;
+                }
+                if (answer3 == pick) {
+                    guess3 = answer3;
+                    loseHealth = 0;
+                }
+                if (answer4 == pick) {
+                    guess4 = answer4;
+                    loseHealth = 0;
+                }
+
+                lifeCount -= loseHealth;
+                showNumber(lifeCount);
+
+                if (lifeCount <= 0) {
+                    clearChars();
+                    writeString("GAME OVER:");
+                    writeString(answer0, answer1, answer2, answer3, answer4);
+                    pushChars();
+                    exit;
+                }
+
+                if (guess0 == answer0 && guess1 == answer1 && guess2 == answer2 && guess3 == answer3 && guess4 == answer4) {
+                    clearChars();
+                    writeString("YOU WIN:  ");
+                    writeString(answer0, answer1, answer2, answer3, answer4);
+                    pushChars();
+                    exit;
+                }
+            }
+
+            releasedButton = 0;
+        }
+        else {
+            releasedButton = 1;
+        }
+    }
+}
+main();
